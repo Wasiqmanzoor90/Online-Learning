@@ -1,6 +1,8 @@
 
 
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+using MyApiProject.Data;
 
 
 
@@ -14,6 +16,13 @@ builder.Services.AddControllers()
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
+builder.Services.AddDbContext<SqlDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
 
 var app = builder.Build();
 
