@@ -3,6 +3,9 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using MyApiProject.Data;
+using MyApiProject.Interface;
+using MyApiProject.Service.AuthService;
+using MyApiProject.Service.TokenService;
 
 
 
@@ -17,7 +20,12 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor();
 
+//Auth Service
+builder.Services.AddScoped<IUser, UserService>();
+//TokenService
+builder.Services.AddScoped<IJsonToken, TokenService>();
 
 builder.Services.AddDbContext<SqlDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
