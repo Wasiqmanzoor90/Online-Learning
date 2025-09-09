@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MyApiProject.Data;
 using MyApiProject.Interface;
 using MyApiProject.Service.AuthService;
+using MyApiProject.Service.ExamService;
 using MyApiProject.Service.TokenService;
 
 
@@ -24,6 +25,8 @@ builder.Services.AddHttpContextAccessor();
 
 //Auth Service
 builder.Services.AddScoped<IUser, UserService>();
+//Exam service
+builder.Services.AddScoped<IExam, ExamService>();
 //TokenService
 builder.Services.AddScoped<IJsonToken, TokenService>();
 
@@ -44,6 +47,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 app.UseHttpsRedirection();
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();

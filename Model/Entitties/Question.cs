@@ -14,8 +14,8 @@ namespace MyApiProject.Model.Entitties
 
         public string Text { get; set; } = null!;
         public QuestionType QuestionType { get; set; }
-        public string Options { get; set; } = null!; // JSON string for options
-        public string CorrectAnswer { get; set; } = null!;
+        public string Options { get; set; } = "{}"; // JSON string for options
+        public string CorrectAnswer { get; set; } = "";
     public Exam? Exam { get; set; }   //many qstn  have one exan
      }
 }
