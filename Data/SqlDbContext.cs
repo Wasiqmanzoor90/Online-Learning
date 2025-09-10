@@ -47,7 +47,7 @@ public class SqlDbContext : DbContext
                 .HasOne(q => q.Exam)
             .WithMany(e => e.Questions)
             .HasForeignKey(e => e.ExamId)
-            .OnDelete(DeleteBehavior.NoAction);
+            .OnDelete(DeleteBehavior.Cascade);
 
 
                     modelBuilder.Entity<Certificate>()

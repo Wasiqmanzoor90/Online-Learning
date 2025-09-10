@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyApiProject.Data;
 
@@ -11,9 +12,11 @@ using MyApiProject.Data;
 namespace MyApiProject.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250910103939_In")]
+    partial class In
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,9 +112,6 @@ namespace MyApiProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("ExamId")
                         .HasColumnType("uniqueidentifier");
 
@@ -126,14 +126,9 @@ namespace MyApiProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("QuestionId");
 
                     b.HasIndex("ExamId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
                 });
@@ -202,16 +197,10 @@ namespace MyApiProject.Migrations
                     b.HasOne("MyApiProject.Model.Entitties.Exam", "Exam")
                         .WithMany("Questions")
                         .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("MyApiProject.Controller.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
                     b.Navigation("Exam");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyApiProject.Model.Entitties.Result", b =>

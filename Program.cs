@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using MyApiProject.Data;
 using MyApiProject.Interface;
+using MyApiProject.Service;
 using MyApiProject.Service.AuthService;
 using MyApiProject.Service.ExamService;
 using MyApiProject.Service.TokenService;
@@ -27,6 +28,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUser, UserService>();
 //Exam service
 builder.Services.AddScoped<IExam, ExamService>();
+//Question Service
+builder.Services.AddScoped<IQuestion, QuestionService>();
 //TokenService
 builder.Services.AddScoped<IJsonToken, TokenService>();
 
