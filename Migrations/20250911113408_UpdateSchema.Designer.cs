@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyApiProject.Data;
 
@@ -11,9 +12,11 @@ using MyApiProject.Data;
 namespace MyApiProject.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250911113408_UpdateSchema")]
+    partial class UpdateSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,7 +208,7 @@ namespace MyApiProject.Migrations
 
             modelBuilder.Entity("MyApiProject.Model.Entitties.Result", b =>
                 {
-                    b.HasOne("MyApiProject.Model.Entitties.Exam", "Exam")
+                    b.HasOne("MyApiProject.Model.Entitties.Exam", "exam")
                         .WithOne("Result")
                         .HasForeignKey("MyApiProject.Model.Entitties.Result", "ExamId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -217,9 +220,9 @@ namespace MyApiProject.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Exam");
-
                     b.Navigation("User");
+
+                    b.Navigation("exam");
                 });
 
             modelBuilder.Entity("MyApiProject.Controller.User", b =>

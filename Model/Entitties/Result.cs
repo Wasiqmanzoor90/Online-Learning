@@ -11,7 +11,7 @@ public class Result
     [Key]
     public Guid ResultId { get; set; }
 
-    [ForeignKey("UserId")]
+
     public Guid UserId { get; set; } // FK → User
 
     [ForeignKey("ExamId")]
@@ -22,10 +22,10 @@ public class Result
     public Status Status { get; set; } = Status.InProgress;
 
 
-    public User? user { get; set; }   //result belong to user
+    public User? User { get; set; }   //result belong to user
 
 
-    public Exam? exam { get; set; }    //exam belong to result
+    public Exam? Exam { get; set; }    //exam belong to result
 
       public Certificate? Certificate { get; set; }
 

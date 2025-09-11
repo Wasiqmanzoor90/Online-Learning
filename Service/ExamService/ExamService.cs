@@ -69,6 +69,7 @@ public class ExamService(SqlDbContext dbContext) : IExam
         try
         {
             return await _dbcontext.Exams
+            .Include(e => e.Questions) // Load related question
                 .Where(e => e.CreatedBy == userId)
                 .ToListAsync();
         }
@@ -77,16 +78,15 @@ public class ExamService(SqlDbContext dbContext) : IExam
             throw new Exception("Error retrieving exams.", ex);
         }
     }
-
-
- 
    
 
     public async Task<Exam> GetExamByIdAsync(Guid id)
     {
         try
         {
-            var exam = await _dbcontext.Exams.FindAsync(id);
+            var exam = await _dbcontext.Exams
+            .Include(e => e.Questions) // Include related questions
+            .FirstOrDefaultAsync(e => e.ExamId == id);
             if (exam == null)
             {
                 throw new Exception("Exam not found.");

@@ -17,7 +17,6 @@ public class Exam
     public Guid CreatedBy { get; set; } // FK → User
   public User? Creator { get; set; }
 
-    [ForeignKey("ResultId")]
     public Result? Result { get; set; }   //one result have only one exam
 
     public ICollection<Question> Questions { get; set; } = new List<Question>();    //one exam could have multiple questions

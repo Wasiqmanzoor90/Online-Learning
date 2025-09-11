@@ -9,6 +9,6 @@ public class QuestionDto
     public Guid ExamId { get; set; }  //fk
     public string Options { get; set; } = "{}"; // JSON string for options
     public string Text { get; set; } = null!;
-    public string CorrectAnswer { get; set; } = "";
+ 
     public Guid CreatedBy { get; set; }
  }

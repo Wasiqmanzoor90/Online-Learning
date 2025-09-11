@@ -14,7 +14,7 @@ public class QuestionController(IQuestion question) : ControllerBase
 
 
     [HttpPost]
-    public async Task<IActionResult> PostExam(QuestionDto questionDto)
+    public async Task<IActionResult> PostQuestion(QuestionDto questionDto)
     {
         var res = await _question.CreateQuestionAsync(questionDto);
         if (!res)
@@ -26,7 +26,7 @@ public class QuestionController(IQuestion question) : ControllerBase
 
 
     [HttpGet]
-    public async Task<IActionResult> GetExamm(Guid ExamId)
+    public async Task<IActionResult> GetQuestion(Guid ExamId)
     {
         if (ExamId == Guid.Empty)
         {
@@ -39,7 +39,7 @@ public class QuestionController(IQuestion question) : ControllerBase
 
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteExam(Guid QuestionId)
+    public async Task<IActionResult> DeleteQuestion(Guid QuestionId)
     {
         var res = await _question.DeleteQuestionAsync(QuestionId);
         return Ok(new{message="Question deleted successfully"});

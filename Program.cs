@@ -30,6 +30,8 @@ builder.Services.AddScoped<IUser, UserService>();
 builder.Services.AddScoped<IExam, ExamService>();
 //Question Service
 builder.Services.AddScoped<IQuestion, QuestionService>();
+//Result service
+builder.Services.AddScoped<ResultInterface, ResultService>();
 //TokenService
 builder.Services.AddScoped<IJsonToken, TokenService>();
 

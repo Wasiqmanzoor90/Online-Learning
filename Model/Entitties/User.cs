@@ -9,7 +9,7 @@ namespace MyApiProject.Controller
     {
         [Key]
         public Guid UserId { get; set; }
-        public required string Username{ get; set; }
+        public required string Username { get; set; }
 
         [EmailAddress]
         public required string Email { get; set; }
@@ -17,6 +17,8 @@ namespace MyApiProject.Controller
         public required string Password { get; set; }
         public Role Role { get; set; } = Role.Client;
 
-        public Result? Result { get; set; }
+        public ICollection<Result> Results { get; set; } = new List<Result>(); //lis one user can multiple result
+        public ICollection<Question> Question { get; set; } = new List<Question>();
+
      }
 }

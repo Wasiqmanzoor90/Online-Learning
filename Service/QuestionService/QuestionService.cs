@@ -33,7 +33,7 @@ public class QuestionService(SqlDbContext dbContext) : IQuestion
                 Text = questionDto.Text,
                 QuestionType = questionDto.QuestionType,
                 Options = questionDto.Options,
-                CorrectAnswer = questionDto.CorrectAnswer
+                
             };
 
             await _dbcontext.AddAsync(question);
