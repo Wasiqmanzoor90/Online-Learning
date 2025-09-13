@@ -3,9 +3,11 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using MyApiProject.Data;
+using MyApiProject.Extension;
 using MyApiProject.Interface;
 using MyApiProject.Service;
 using MyApiProject.Service.AuthService;
+using MyApiProject.Service.CertificateService;
 using MyApiProject.Service.ExamService;
 using MyApiProject.Service.TokenService;
 
@@ -24,6 +26,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpContextAccessor();
 
+//PdfExtension
+builder.Services.AddScoped<PdfExtension>();
+
 //Auth Service
 builder.Services.AddScoped<IUser, UserService>();
 //Exam service
@@ -34,6 +39,9 @@ builder.Services.AddScoped<IQuestion, QuestionService>();
 builder.Services.AddScoped<ResultInterface, ResultService>();
 //TokenService
 builder.Services.AddScoped<IJsonToken, TokenService>();
+//CertificateService
+builder.Services.AddScoped<ICertificate, CertificateService>();
+
 
 builder.Services.AddDbContext<SqlDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
