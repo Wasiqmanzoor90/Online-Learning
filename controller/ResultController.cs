@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyApiProject.DTO;
 using MyApiProject.Interface;
@@ -11,7 +12,7 @@ public class ResultController(ResultInterface result) : ControllerBase
 {
     private readonly ResultInterface _result = result;
 
-
+[Authorize]
     [HttpPost]
     public async Task<IActionResult> PostResult(ResultDto resultDto)
     {
@@ -22,6 +23,8 @@ public class ResultController(ResultInterface result) : ControllerBase
         }
         return Ok(new { message = "Result Posted Sucessfully" });
     }
+
+    [Authorize]
  [HttpGet("{userId}/{examId}")]
 public async Task<IActionResult> GetResult(Guid userId, Guid examId)
 {

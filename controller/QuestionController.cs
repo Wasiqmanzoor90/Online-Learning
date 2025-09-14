@@ -1,5 +1,6 @@
 
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyApiProject.DTO;
 using MyApiProject.Interface;
@@ -11,8 +12,8 @@ namespace MyApiProject.Controller;
 public class QuestionController(IQuestion question) : ControllerBase
 {
     private readonly IQuestion _question = question;
-
-
+    
+[Authorize]
     [HttpPost]
     public async Task<IActionResult> PostQuestion(QuestionDto questionDto)
     {
@@ -25,7 +26,8 @@ public class QuestionController(IQuestion question) : ControllerBase
     }
 
 
-    [HttpGet]
+[Authorize]
+    [HttpGet("{ExamId}")]
     public async Task<IActionResult> GetQuestion(Guid ExamId)
     {
         if (ExamId == Guid.Empty)
@@ -38,7 +40,8 @@ public class QuestionController(IQuestion question) : ControllerBase
     }
 
 
-    [HttpDelete]
+[Authorize]
+    [HttpDelete("{QuestionId}")]
     public async Task<IActionResult> DeleteQuestion(Guid QuestionId)
     {
         var res = await _question.DeleteQuestionAsync(QuestionId);

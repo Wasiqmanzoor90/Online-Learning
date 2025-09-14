@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyApiProject.DTO;
 using MyApiProject.Interface;
@@ -13,6 +14,9 @@ public class ExamController(IExam exam) : ControllerBase
 {
     private readonly IExam _exam = exam;
 
+
+
+[Authorize]
     [HttpPost]
     public async Task<IActionResult> ExamPost(ExamDto examDto)
     {
@@ -24,7 +28,9 @@ public class ExamController(IExam exam) : ControllerBase
         return Ok("Eam sucessfull");
     }
 
-    [HttpGet]
+
+[Authorize]
+    [HttpGet("/{userId}")]
     public async Task<IActionResult> GetExamsByUserId(Guid userId)
     {
         var exams = await _exam.GetAllExamsAsync(userId);
@@ -33,10 +39,13 @@ public class ExamController(IExam exam) : ControllerBase
 
     
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetExamById(Guid id)
+
+[Authorize]
+
+    [HttpGet("{ExamId}")]
+    public async Task<IActionResult> GetExamById(Guid ExamId)
     {
-        var exam = await _exam.GetExamByIdAsync(id);
+        var exam = await _exam.GetExamByIdAsync(ExamId);
         return Ok(exam);
    }
 }

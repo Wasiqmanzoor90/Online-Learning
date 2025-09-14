@@ -1,8 +1,10 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyApiProject.Data;
 using MyApiProject.DTO;
 using MyApiProject.Interface;
+using MyApiProject.Model;
 
 
 namespace MyApiProject.Controller;
@@ -39,6 +41,6 @@ public class UserController(IUser user) : ControllerBase
             return BadRequest("Invalid email or password.");
         }
 
-        return Ok(new{message="Login sucessfull",token});
+        return Ok(new { message = "Login sucessfull", token, role = loginDto.Roles.ToString()});
     }
 }

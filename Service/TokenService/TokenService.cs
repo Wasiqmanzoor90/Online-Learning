@@ -28,6 +28,7 @@ public class TokenService : IJsonToken
                 new Claim(ClaimTypes.NameIdentifier, Id.ToString()),
                 new Claim(ClaimTypes.Name, Username),
                 new Claim(ClaimTypes.Email, Email)
+                
             }),
                 Expires = DateTime.UtcNow.AddHours(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Key), SecurityAlgorithms.HmacSha256Signature)

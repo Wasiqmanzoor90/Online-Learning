@@ -47,6 +47,8 @@ builder.Services.AddDbContext<SqlDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+//  Add JWT Authentication
+builder.Services.Addjwt(builder.Configuration);
 
 var app = builder.Build();
 

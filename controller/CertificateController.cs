@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyApiProject.Interface;
 
@@ -11,8 +12,8 @@ public class CertificateController(ICertificate certificate) : ControllerBase
     private readonly ICertificate _certificate = certificate;
 
 
-
-[HttpPost]
+[Authorize]
+    [HttpPost("{ResultId}")]
     public async Task<IActionResult> CreateCertificate(Guid ResultId)
     {
         try
@@ -26,8 +27,8 @@ public class CertificateController(ICertificate certificate) : ControllerBase
         }
 
     }
-
-[HttpGet]
+[Authorize]
+[HttpGet("{ResultId}")]
     public async Task<IActionResult> GenrateCertificate(Guid ResultId)
     {
         try
