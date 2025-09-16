@@ -50,6 +50,12 @@ builder.Services.AddDbContext<SqlDbContext>(options =>
 //  Add JWT Authentication
 builder.Services.Addjwt(builder.Configuration);
 
+// CORS configuration for SignalR
+builder.Services.AddCors(Options =>
+{
+    Options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -62,6 +68,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
+
 app.UseAuthentication(); 
 app.UseAuthorization();
 
